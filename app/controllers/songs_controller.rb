@@ -6,16 +6,27 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.all
+    respond_to do |format|
+      format.html # index.html.slim
+      format.json { render json: @songs }
+    end
   end
 
   # GET /songs/1
   # GET /songs/1.json
   def show
+    respond_to do |format|
+      format.html # show.html.slim
+      format.json { render json: @song }
   end
 
   # GET /songs/new
   def new
     @song = Song.new 
+    respond_to do |format|
+      format.html # new.html.slim
+      format.json { render json: @song }
+    end
   end
 
   # GET /songs/1/edit
@@ -42,7 +53,10 @@ class SongsController < ApplicationController
   def destroy
     @song = @playlist.songs.find(params[:id])
     @song.destroy
-    redirect_to playlist_songs_path(@playlist)
+    respond_to do |format|
+        format.html { redirect_to playlist_songs_path(@playlist)}
+        format.json { head :no_content }
+    end
   end
 
   private
