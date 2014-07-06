@@ -1,20 +1,17 @@
-class PlaylistsController < ApplicationController
+class PlaylistController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.paginate(:page => params[:page], :per_page => 6)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @playslits }
-    end
+    @playlists = Playlist.all
   end
 
   # GET /playlists/1
   # GET /playlists/1.json
-  def show 
+  def show
   end
+
   # GET /playlists/new
   def new
     @playlist = Playlist.new
@@ -31,11 +28,11 @@ class PlaylistsController < ApplicationController
 
     respond_to do |format|
       if @playlist.save
-        format.html { redirect_to playlists_path, notice: 'Playlist was successfully created.' }
-        format.json { render :index, status: :created, location: @playlists }
+        format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
+        format.json { render :show, status: :created, location: @playlist }
       else
         format.html { render :new }
-        format.json { render json: @playlists.errors, status: :unprocessable_entity }
+        format.json { render json: @playlist.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,8 +42,8 @@ class PlaylistsController < ApplicationController
   def update
     respond_to do |format|
       if @playlist.update(playlist_params)
-        format.html { redirect_to playlists_path, notice: 'Playlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @playlists }
+        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
+        format.json { render :show, status: :ok, location: @playlist }
       else
         format.html { render :edit }
         format.json { render json: @playlist.errors, status: :unprocessable_entity }

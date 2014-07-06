@@ -1,13 +1,13 @@
 class SongsController < ApplicationController
-  before_action :set_playlist_id
+  before_action :set_playlist_id 
   before_action :set_song, only: [:show, :edit, :update, :destroy]
 
   # GET /songs
   # GET /songs.json
   def index
-    @songs = @playlist.songs.paginate(:page => params[:page], :per_page => 6)
+    @songs = Song.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.slim
       format.json { render json: @songs }
     end
   end
@@ -18,12 +18,16 @@ class SongsController < ApplicationController
     respond_to do |format|
       format.html # show.html.slim
       format.json { render json: @song }
-    end  
+    end
   end
 
   # GET /songs/new
   def new
     @song = Song.new 
+    respond_to do |format|
+      format.html # new.html.slim
+      format.json { render json: @song }
+    end
   end
 
   # GET /songs/1/edit
@@ -34,7 +38,7 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = @playlist.songs.create(song_params)
-    redirect_to playlist_show_path
+    redirect_to playlist_songs_path(@playlist)
   end
 
   # PATCH/PUT /songs/1
@@ -42,7 +46,7 @@ class SongsController < ApplicationController
   def update
     @song = @playlist.songs.find(params[:id])
     @song.update
-    redirect_to playlist_show_path
+    redirect_to playlist_songs_path(@playlist)
   end
 
   # DELETE /songs/1
@@ -51,7 +55,7 @@ class SongsController < ApplicationController
     @song = @playlist.songs.find(params[:id])
     @song.destroy
     respond_to do |format|
-        format.html { redirect_to playlist_show_path}
+        format.html { redirect_to playlist_songs_path(@playlist)}
         format.json { head :no_content }
     end
   end

@@ -1,6 +1,63 @@
+.pagination {
+ position: absolute;
+ top: 610px;
+ left: 200px;
+ font-family: verdana, arial, helvetica, sans-serif;
+ font-size: 13px;
+ color: #fff;
+}
+.button {
+  position: absolute;
+  top: 690px;
+  margin: 0 auto !important;
+  float: none !important;
+}
+.form {
+  position: relative;
+  top: 220px;
+  left: 66px;
+  right: 100px;
+  padding-right: 380px;
+  color: #fff;
+}
+.page-header { 
+  position: relative;
+  border-bottom: none;
+  text-align: center; 
+  top: 40px;
+}
+.form-horizontal {
+  position: relative;
+  top: 40px;
+  color: #fff;
+}
+.table-hover td,
+.table-hover th {
+    border: 1;
+	border-color: #21273e;
+	color: #fff;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #21273e;
+}
+.form-actions {
+  background-color: transparent;
+  border-top: none;
+}
+.image {
+  background: image-url("t7.png") no-repeat left top;
+  position: absolute;
+  min-width: 600px;
+  min-height: 1200px; 
+  padding: 15% 80% 0% 40%;
+}
+
 body {
+  background: image-url("bg.jpg") no-repeat right bottom fixed;
   background-color: #fff;
   color: #333;
+  max-width: 900px;
+  max-height: 1600px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -19,13 +76,16 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #fff;
+  text-decoration: none;
   &:visited {
-    color: #666;
+    color: #fff;
+    text-decoration: none;
   }
   &:hover {
     color: #fff;
-    background-color: #000;
+    background-color: #21273e;
+	text-decoration: none;
   }
 }
 
@@ -64,6 +124,5 @@ div {
   }
   ul li {
     font-size: 12px;
-    list-style: square;
   }
 }

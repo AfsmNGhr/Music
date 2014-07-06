@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-
-resources :playlists do 
-    resources :songs
+resources :playlists, only: [:index, :create] 
+resources :playlists, :path => "playlist", except: [:index, :create] do 
+  get "/show" => "songs#index" 
+    resources :songs, :path => "song"
 end
 
 root 'playlists#index'
