@@ -12,6 +12,16 @@
     .controls
       = f.text_field :playlist_id, :class => 'text_field'
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    '
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), playlist_path(@playlist), :class => 'btn'
+    = f.submit nil, :class => "btn btn-info"
+table class="table-hover button"
+  thead
+    tr
+      th
+  tbody
+      tr
+        td
+          = link_to image_tag("left.png"), playlist_show_path(@playlist)
+          '
+          = image_tag("b1.png")
+          '
+          = image_tag("right.png")

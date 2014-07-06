@@ -1,11 +1,12 @@
 class SongsController < ApplicationController
-  before_action :set_playlist_id 
+  require 'will_paginate/array'
+  before_action :set_playlist_id
   before_action :set_song, only: [:show, :edit, :update, :destroy]
 
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = @playlist.songs.paginate(:page => params[:page], :per_page => 6)
     respond_to do |format|
       format.html # index.html.slim
       format.json { render json: @songs }
